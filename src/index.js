@@ -6,6 +6,9 @@ import reportWebVitals from './reportWebVitals';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "jquery/dist/jquery.min.js";
 import "bootstrap/dist/js/bootstrap.bundle.js";
+import 'animate.css'
+import 'wowjs'
+import './scss/index.scss'
 import store from "./store";
 import { Provider } from "react-redux";
 

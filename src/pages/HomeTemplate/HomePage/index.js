@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchListMovie } from './duck/actions'
+import Banner from './Banner'
+import MovieItem from './MovieItem'
+import MovieTheater from './MovieTheater'
 
 export default function HomePage() {
     const loading = useSelector((state) => state.listMovieReducer.loading)
@@ -8,29 +11,23 @@ export default function HomePage() {
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(fetchListMovie())
-    },[])
+    }, [])
 
     const renderMovie = () => {
         if (loading) return <div>Loading...</div>
-        return data?.map((movie) => {
-            return (
-                <div className="col-md-3" key={movie.maPhim}>
-                    <div className="card">
-                        <img className="card-img-top" src={movie.hinhAnh} alt="" />
-                        <div className="card-body">
-                            <h4 className="card-title">{movie.tenPhim}</h4>
-                            {/* <Link to={`/detail/${movie.maPhim}`} className="btn btn-success">Detail</Link> */}
-                        </div>
-                    </div>
-                </div>
-            )
-        })
+        return data?.map((movie) => <MovieItem key={movie.maPhim} movie={movie} />)
     }
     return (
-        <div className='container'>
-            <div className="row">
-                {renderMovie()}
+        <div>
+            <Banner />
+            <div className="container">
+                <h3>Phim đang chiếu</h3>
+                <div className="row">
+                    {renderMovie()}
+                </div>
+                <MovieTheater />
             </div>
+
 
         </div>
     )
